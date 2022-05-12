@@ -40,28 +40,41 @@ function ShowCards(props){
     const TitleCard = styled.h2`
     font-size: 1.3em;
     color: #CCF3EE;
-    text-shadow: 1px 1px 2px black;
+    text-shadow: 2px 2px 2px black;
+    margin: 0 auto;
+    height: 30px;
+    `;
+    const DeadTitleCard = styled.h2`
+    font-size: 1.3em;
+    color: #7e2c2c;
+    text-shadow: 2px 2px 2px black;
+    margin: 0 auto;;
+    height: 30px;
     `;
     const StatusFilter = styled.div`
     width: 200px;
     height: 200px;
-    background-color: ${props => {
+    margin-top: -30px;
+    ${props => {
         if(props.className == 'Alive'){
-            return 'none';
+            return '';
         }else
         if(props.className == 'Dead'){
-            return 'rgba(255, 74, 74, 0.459)';
+            return 'background-color: rgba(255, 74, 74, 0.459)';
         }else
         if(props.className == 'Unknown'){
-            return 'rgba(157, 157, 157, 0.6)';
+            return 'background-color: rgba(157, 157, 157, 0.6)';
         }
     }}
     `;
 
     return (
         <CharImage key={props.keyId}>
+            {
+                char.status == 'Dead' ? <DeadTitleCard>{char.name}</DeadTitleCard> : <TitleCard>{char.name}
+                </TitleCard>
+            }
             <StatusFilter className={char.status}></StatusFilter>
-            <TitleCard>{char.name}</TitleCard>
         </CharImage>
     )
 }
