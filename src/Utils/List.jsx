@@ -1,7 +1,6 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import styled from 'styled-components';
-import './List.css';
 
 function ShowCards(props){
 
@@ -43,10 +42,25 @@ function ShowCards(props){
     color: #CCF3EE;
     text-shadow: 1px 1px 2px black;
     `;
+    const StatusFilter = styled.div`
+    width: 200px;
+    height: 200px;
+    background-color: ${props => {
+        if(props.className == 'Alive'){
+            return 'none';
+        }else
+        if(props.className == 'Dead'){
+            return 'rgba(255, 74, 74, 0.459)';
+        }else
+        if(props.className == 'Unknown'){
+            return 'rgba(157, 157, 157, 0.6)';
+        }
+    }}
+    `;
 
     return (
         <CharImage key={props.keyId}>
-            <div className={char.status}></div>
+            <StatusFilter className={char.status}></StatusFilter>
             <TitleCard>{char.name}</TitleCard>
         </CharImage>
     )
